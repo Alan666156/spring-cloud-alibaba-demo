@@ -32,7 +32,7 @@ dubbo:
   application:
     name: order
   registry:
-    address: 172.19.152.165:8848
+    address: nacos://172.19.152.165:8848
   protocol:
     name: dubbo
   consumer:
