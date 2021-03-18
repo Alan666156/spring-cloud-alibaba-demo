@@ -9,8 +9,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
- * Hello world!
  *
+ *
+ * @author fuhongxing
  */
 @Slf4j
 @MapperScan("com.fuhx.dao")
@@ -21,7 +22,7 @@ public class OrderApplication
 {
     public static void main( String[] args )
     {
-        ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(OrderApplication.class, args);
+        SpringApplication.run(OrderApplication.class, args);
         log.info("===============Order START SUCCESS==============");
     }
 }

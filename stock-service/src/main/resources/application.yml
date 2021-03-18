@@ -35,6 +35,7 @@ dubbo:
     address: nacos://172.19.152.165:8848
   protocol:
     name: dubbo
+    prot: -1
   consumer:
     timeout: 100000
 mybatis:
