@@ -19,7 +19,7 @@ import java.io.Serializable;
  *
  */
 @Slf4j
-//@EnableDubbo(scanBasePackages = "com.fuhx.order")
+//@EnableDubbo(scanBasePackages = "com.fuhx.dubbo")
 @EnableAsync
 @EnableDiscoveryClient
 @SpringBootApplication

@@ -30,13 +30,13 @@ logging:
 #mybatis:
 #  mapper-locations:
 #    - classpath*:/mapper/*-Mapper.xml
+#  type-aliases-package: com.fhx.domain
 dubbo:
   application:
     name: order
   registry:
-    address: localost:8848
+    address: 172.19.152.165:8848
   protocol:
     name: dubbo
   consumer:
     timeout: 100000
-#  type-aliases-package: com.fhx.domain

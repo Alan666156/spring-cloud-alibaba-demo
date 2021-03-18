@@ -31,3 +31,12 @@ logging:
   #  mapper-locations:
   #    - classpath*:/mapper/*-Mapper.xml
   #  type-aliases-package: com.fhx.domain
+dubbo:
+  application:
+    name: product
+  registry:
+    address: 172.19.152.165:8848
+  protocol:
+    name: dubbo
+  consumer:
+    timeout: 100000

@@ -1,8 +1,8 @@
 server:
-  port: 9001
+  port: 9004
 spring:
   application:
-    name: stock-service
+    name: user-service
 #  profiles:
 #    active: ft1
   redis:
@@ -30,7 +30,7 @@ management:
         include: '*'
 dubbo:
   application:
-    name: order
+    name: user
   registry:
     address: 172.19.152.165:8848
   protocol:

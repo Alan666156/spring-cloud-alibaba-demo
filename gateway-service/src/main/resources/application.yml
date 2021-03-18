@@ -2,7 +2,7 @@ server:
   port: 9001
 spring:
   application:
-    name: stock-service
+    name: gateway
 #  profiles:
 #    active: ft1
   redis:
@@ -30,7 +30,7 @@ management:
         include: '*'
 dubbo:
   application:
-    name: order
+    name: gateway
   registry:
     address: 172.19.152.165:8848
   protocol:
