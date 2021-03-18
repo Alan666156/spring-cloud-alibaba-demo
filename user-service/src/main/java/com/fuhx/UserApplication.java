@@ -20,7 +20,7 @@ import java.io.Serializable;
  *
  */
 @Slf4j
-@EnableDubbo(scanBasePackages = "com.fuhx")
+@EnableDubbo(scanBasePackages = "com.fuhx.dubbo")
 //@EnableRabbit
 @EnableAsync
 @SpringBootApplication

@@ -2,6 +2,7 @@ package com.fuhx.controller;
 
 import com.fuhx.dubbo.ApiUserService;
 import com.fuhx.entity.Account;
+import com.fuhx.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("account")
+@RequestMapping("user")
 public class AccountController {
     /**
      * 服务对象
@@ -28,9 +29,9 @@ public class AccountController {
      *
      */
     @GetMapping("/userList")
-    public Account userList() {
-        log.info("");
-        return null;
+    public Result userList() {
+        log.info("用户查询");
+        return Result.success();
     }
 
 }

@@ -2,6 +2,9 @@ package com.fuhx.dubbo;
 
 import org.apache.dubbo.config.annotation.DubboService;
 
+/**
+ * @author fuhongxing
+ */
 @DubboService(version = "1.0")
 public class ApiUserServiceImpl implements ApiUserService{
 
