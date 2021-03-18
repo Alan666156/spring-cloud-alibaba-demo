@@ -1,7 +1,6 @@
-package com.fhx.controller;
+package com.fuhx.controller;
 
-import com.fhx.dubbo.ApiOrderService;
-import com.fuhx.entity.Order;
+import com.fuhx.dubbo.ApiOrderService;
 import com.fuhx.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
