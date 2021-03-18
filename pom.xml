@@ -14,6 +14,7 @@
     <module>product-service</module>
     <module>gateway-service</module>
     <module>common</module>
+    <module>user-service</module>
   </modules>
 
   <name>spring-cloud-alibaba-demo</name>
@@ -55,13 +56,15 @@
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-<!--      <version>2.2.1.RELEASE</version>-->
     </dependency>
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-<!--      <version>2.2.1.RELEASE</version>-->
     </dependency>
+<!--    <dependency>-->
+<!--      <groupId>com.alibaba.cloud</groupId>-->
+<!--      <artifactId>spring-cloud-starter-alibaba-seata</artifactId>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-dubbo</artifactId>
@@ -72,16 +75,16 @@
       <artifactId>mybatis-spring-boot-starter</artifactId>
       <version>2.1.0</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>tk.mybatis</groupId>-->
-<!--      <artifactId>mapper-spring-boot-starter</artifactId>-->
-<!--      <version>2.1.5</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>com.github.pagehelper</groupId>-->
-<!--      <artifactId>pagehelper-spring-boot-starter</artifactId>-->
-<!--      <version>1.3.0</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>tk.mybatis</groupId>
+      <artifactId>mapper-spring-boot-starter</artifactId>
+      <version>2.1.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+      <version>1.3.0</version>
+    </dependency>
 <!--    <dependency>-->
 <!--      <groupId>org.springframework.boot</groupId>-->
 <!--      <artifactId>spring-boot-starter-amqp</artifactId>-->
@@ -173,7 +176,6 @@
       <version>5.5.9</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
     <dependency>
       <groupId>org.redisson</groupId>
       <artifactId>redisson-spring-boot-starter</artifactId>
@@ -188,13 +190,13 @@
 
   <dependencyManagement>
     <dependencies>
-<!--      <dependency>-->
-<!--        <groupId>org.springframework.boot</groupId>-->
-<!--        <artifactId>spring-boot-dependencies</artifactId>-->
-<!--        <version>2.4.1</version>-->
-<!--        <type>pom</type>-->
-<!--        <scope>import</scope>-->
-<!--      </dependency>-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>2.2.2.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
@@ -220,6 +222,13 @@
         <configuration>
           <executable>true</executable>
         </configuration>
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <goals>-->
+<!--              <goal>repackage</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
       </plugin>
     </plugins>
   </build>

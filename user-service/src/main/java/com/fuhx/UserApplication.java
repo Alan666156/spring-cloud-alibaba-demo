@@ -20,17 +20,17 @@ import java.io.Serializable;
  *
  */
 @Slf4j
-@EnableDubbo(scanBasePackages = "com.fuhx.dubbo")
+@EnableDubbo(scanBasePackages = "com.fuhx")
 //@EnableRabbit
 @EnableAsync
 @SpringBootApplication
 @EnableDiscoveryClient
-public class StockApplication implements CommandLineRunner
+public class UserApplication implements CommandLineRunner
 {
     public static void main( String[] args )
     {
-        SpringApplication.run(StockApplication.class, args);
-        log.info("===============Stock START SUCCESS==============");
+        SpringApplication.run(UserApplication.class, args);
+        log.info("===============User START SUCCESS==============");
     }
 
     @Bean
