@@ -5,7 +5,7 @@ import com.fuhx.entity.Order;
 import com.fuhx.service.AccountService;
 import org.apache.dubbo.config.annotation.DubboService;
 
-@DubboService
+@DubboService(version = "1.0")
 public class ApiOrderServiceImpl implements ApiOrderService {
 
     private OrderDao orderDao;
