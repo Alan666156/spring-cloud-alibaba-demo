@@ -17,7 +17,7 @@ import java.util.List;
 @Service("tOrderService")
 public class OrderServiceImpl implements OrderService {
     @Resource
-    private OrderDao tOrderDao;
+    private OrderDao orderDao;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Order queryById(Integer id) {
-        return this.tOrderDao.queryById(id);
+        return this.orderDao.queryById(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public List<Order> queryAllByLimit(int offset, int limit) {
-        return this.tOrderDao.queryAllByLimit(offset, limit);
+        return this.orderDao.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Order insert(Order tOrder) {
-        this.tOrderDao.insert(tOrder);
+        this.orderDao.insert(tOrder);
         return tOrder;
     }
 
@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Order update(Order tOrder) {
-        this.tOrderDao.update(tOrder);
+        this.orderDao.update(tOrder);
         return this.queryById(tOrder.getId());
     }
 
@@ -74,6 +74,6 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.tOrderDao.deleteById(id) > 0;
+        return this.orderDao.deleteById(id) > 0;
     }
 }

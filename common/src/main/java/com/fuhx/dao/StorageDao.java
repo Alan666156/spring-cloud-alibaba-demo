@@ -2,6 +2,7 @@ package com.fuhx.dao;
 
 import com.fuhx.entity.Storage;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @author fuhongxing
  * @since 2021-03-18 12:21:30
  */
-public interface StorageDao {
+public interface StorageDao extends Mapper<Storage> {
 
     /**
      * 通过ID查询单条数据

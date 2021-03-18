@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fuhx.dao.AccountDao">
 
-    <resultMap type="com.fuhx.entity.Account" id="TAccountMap">
+    <resultMap type="com.fuhx.entity.Account" id="AccountMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="userId" column="user_id" jdbcType="VARCHAR"/>
         <result property="amount" column="amount" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="TAccountMap">
+    <select id="queryById" resultMap="AccountMap">
         select id,
                user_id,
                amount
@@ -18,7 +18,7 @@
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="TAccountMap">
+    <select id="queryAllByLimit" resultMap="AccountMap">
         select id,
                user_id,
                amount
@@ -26,7 +26,7 @@
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="TAccountMap">
+    <select id="queryAll" resultMap="AccountMap">
         select
         id, user_id, amount
         from seata.t_account
@@ -44,10 +44,10 @@
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into seata.t_account(user_id, amount)
-        values (#{userId}, #{amount})
-    </insert>
+<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into seata.t_account(user_id, amount)-->
+<!--        values (#{userId}, #{amount})-->
+<!--    </insert>-->
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
         insert into seata.t_account(user_id, amount)

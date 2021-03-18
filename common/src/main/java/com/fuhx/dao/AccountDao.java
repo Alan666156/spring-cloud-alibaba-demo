@@ -2,6 +2,7 @@ package com.fuhx.dao;
 
 import com.fuhx.entity.Account;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @author fuhongxing
  * @since 2021-03-18 12:21:08
  */
-public interface AccountDao {
+public interface AccountDao extends Mapper<Account> {
 
     /**
      * 通过ID查询单条数据
@@ -34,18 +35,18 @@ public interface AccountDao {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param tAccount 实例对象
+     * @param account 实例对象
      * @return 对象列表
      */
-    List<Account> queryAll(Account tAccount);
+    List<Account> queryAll(Account account);
 
     /**
      * 新增数据
      *
-     * @param tAccount 实例对象
+     * @param account 实例对象
      * @return 影响行数
      */
-    int insert(Account tAccount);
+//    int insert(Account account);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
@@ -66,10 +67,10 @@ public interface AccountDao {
     /**
      * 修改数据
      *
-     * @param tAccount 实例对象
+     * @param account 实例对象
      * @return 影响行数
      */
-    int update(Account tAccount);
+    int update(Account account);
 
     /**
      * 通过主键删除数据

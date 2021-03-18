@@ -2,6 +2,7 @@ package com.fuhx.dao;
 
 import com.fuhx.entity.Order;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @author fuhongxing
  * @since 2021-03-18 12:21:28
  */
-public interface OrderDao {
+public interface OrderDao extends Mapper<Order> {
 
     /**
      * 通过ID查询单条数据
@@ -42,10 +43,10 @@ public interface OrderDao {
     /**
      * 新增数据
      *
-     * @param tOrder 实例对象
+     * @param order 实例对象
      * @return 影响行数
      */
-    int insert(Order tOrder);
+//    int insert(Order order);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）

@@ -1,11 +1,9 @@
 package com.fuhx.controller;
 
 import com.fuhx.dubbo.ApiStorageService;
-import com.fuhx.entity.Storage;
 import com.fuhx.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -17,7 +17,7 @@ import java.util.List;
 @Service("tStorageService")
 public class StorageServiceImpl implements StorageService {
     @Resource
-    private StorageDao tStorageDao;
+    private StorageDao storageDao;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class StorageServiceImpl implements StorageService {
      */
     @Override
     public Storage queryById(Integer id) {
-        return this.tStorageDao.queryById(id);
+        return this.storageDao.queryById(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class StorageServiceImpl implements StorageService {
      */
     @Override
     public List<Storage> queryAllByLimit(int offset, int limit) {
-        return this.tStorageDao.queryAllByLimit(offset, limit);
+        return this.storageDao.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class StorageServiceImpl implements StorageService {
      */
     @Override
     public Storage insert(Storage tStorage) {
-        this.tStorageDao.insert(tStorage);
+        this.storageDao.insert(tStorage);
         return tStorage;
     }
 
@@ -62,7 +62,7 @@ public class StorageServiceImpl implements StorageService {
      */
     @Override
     public Storage update(Storage tStorage) {
-        this.tStorageDao.update(tStorage);
+        this.storageDao.update(tStorage);
         return this.queryById(tStorage.getId());
     }
 
@@ -74,6 +74,6 @@ public class StorageServiceImpl implements StorageService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.tStorageDao.deleteById(id) > 0;
+        return this.storageDao.deleteById(id) > 0;
     }
 }

@@ -61,10 +61,23 @@
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>com.alibaba.cloud</groupId>-->
-<!--      <artifactId>spring-cloud-starter-alibaba-seata</artifactId>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+    </dependency>
+    <!-- sentinel管理界面 localhost:8080 -->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba.csp</groupId>
+      <artifactId>sentinel-datasource-nacos</artifactId>
+      <version>1.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-dubbo</artifactId>

@@ -12,6 +12,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.annotation.EnableAsync;
+import tk.mybatis.spring.annotation.MapperScan;
 
 import java.io.Serializable;
 
@@ -21,6 +22,7 @@ import java.io.Serializable;
  */
 @Slf4j
 @EnableDubbo(scanBasePackages = "com.fuhx.dubbo")
+@MapperScan("com.fuhx.dao")
 //@EnableRabbit
 @EnableAsync
 @SpringBootApplication

@@ -1,5 +1,10 @@
 package com.fuhx.entity;
 
+import lombok.Data;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -8,6 +13,9 @@ import java.io.Serializable;
  * @author fuhongxing
  * @since 2021-03-18 12:21:28
  */
+@Accessors(chain = true)
+@Data
+@Table(name="t_order")
 public class Order implements Serializable {
     private static final long serialVersionUID = -48469399210531969L;
 
@@ -22,54 +30,5 @@ public class Order implements Serializable {
     private Integer count;
 
     private Object amount;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getOrderNo() {
-        return orderNo;
-    }
-
-    public void setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getCommodityCode() {
-        return commodityCode;
-    }
-
-    public void setCommodityCode(String commodityCode) {
-        this.commodityCode = commodityCode;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    public Object getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Object amount) {
-        this.amount = amount;
-    }
 
 }

@@ -3,6 +3,7 @@ package com.fuhx.service.impl;
 import com.fuhx.entity.Account;
 import com.fuhx.dao.AccountDao;
 import com.fuhx.service.AccountService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,7 +18,7 @@ import java.util.List;
 @Service("tAccountService")
 public class AccountServiceImpl implements AccountService {
     @Resource
-    private AccountDao tAccountDao;
+    private AccountDao accountDao;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +28,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public Account queryById(Integer id) {
-        return this.tAccountDao.queryById(id);
+        return this.accountDao.queryById(id);
     }
 
     /**
@@ -39,7 +40,8 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public List<Account> queryAllByLimit(int offset, int limit) {
-        return this.tAccountDao.queryAllByLimit(offset, limit);
+//        PageHelper.startPage(offset, limit);
+        return this.accountDao.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +52,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public Account insert(Account tAccount) {
-        this.tAccountDao.insert(tAccount);
+        this.accountDao.insert(tAccount);
         return tAccount;
     }
 
@@ -62,7 +64,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public Account update(Account tAccount) {
-        this.tAccountDao.update(tAccount);
+        this.accountDao.update(tAccount);
         return this.queryById(tAccount.getId());
     }
 
@@ -74,6 +76,6 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.tAccountDao.deleteById(id) > 0;
+        return this.accountDao.deleteById(id) > 0;
     }
 }

@@ -1,11 +1,12 @@
 package com.fuhx.dubbo;
 
 import com.fuhx.entity.Order;
+import com.fuhx.util.Result;
 
 public interface ApiOrderService {
 
     /**
      * 创建订单
      */
-    Order create(String userId, String commodityCode, int orderCount);
+    Result<Order> create(String userId, String commodityCode, int orderCount);
 }

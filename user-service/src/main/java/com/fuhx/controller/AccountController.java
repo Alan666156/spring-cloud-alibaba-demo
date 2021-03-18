@@ -1,7 +1,6 @@
 package com.fuhx.controller;
 
 import com.fuhx.dubbo.ApiUserService;
-import com.fuhx.entity.Account;
 import com.fuhx.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
