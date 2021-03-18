@@ -23,7 +23,7 @@ public class StorageController {
     /**
      * 服务对象
      */
-    @DubboReference
+    @DubboReference(version = "1.0")
     private ApiStorageService apiStorageService;
 
     /**
