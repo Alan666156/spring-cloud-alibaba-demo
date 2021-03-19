@@ -1,11 +1,12 @@
 package com.fuhx.dubbo;
 
 
+import com.fuhx.api.ApiStorageService;
 import com.fuhx.dao.StorageDao;
-import com.fuhx.entity.Account;
 import com.fuhx.entity.Storage;
 import com.fuhx.util.Result;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.scheduling.annotation.Async;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
@@ -14,7 +15,8 @@ import javax.annotation.Resource;
  * @author fuhongxing
  */
 @DubboService(version = "1.0")
-public class ApiStorageServiceImpl implements ApiStorageService{
+public class ApiStorageServiceImpl implements ApiStorageService {
+
     @Resource
     private StorageDao storageDao;
 
@@ -31,7 +33,25 @@ public class ApiStorageServiceImpl implements ApiStorageService{
             return Result.failure("商品不存在");
         }
         storage.setCount(storage.getCount() - count);
-        storageDao.selectOneByExample(new Storage().setCommodityCode(commodityCode));
+        storageDao.update(storage);
         return Result.success();
+    }
+
+    @Async
+    @Override
+    public int update(Storage storage) {
+        return storageDao.update(storage);
+    }
+
+    @Override
+    public Result<Storage> findByCommodityCode(String commodityCode) {
+        Example example = new Example(Storage.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("commodityCode", commodityCode);
+        Storage storage = storageDao.selectOneByExample(example);
+        if(storage == null){
+            return Result.failure("商品不存在");
+        }
+        return Result.success(storage);
     }
 }

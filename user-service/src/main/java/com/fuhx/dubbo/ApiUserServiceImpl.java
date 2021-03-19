@@ -1,5 +1,6 @@
 package com.fuhx.dubbo;
 
+import com.fuhx.api.ApiUserService;
 import com.fuhx.dao.AccountDao;
 import com.fuhx.entity.Account;
 import com.fuhx.util.Result;
@@ -13,7 +14,7 @@ import javax.annotation.Resource;
  * @author fuhongxing
  */
 @DubboService(version = "1.0")
-public class ApiUserServiceImpl implements ApiUserService{
+public class ApiUserServiceImpl implements ApiUserService {
     @Resource
     private AccountDao accountDao;
     /**

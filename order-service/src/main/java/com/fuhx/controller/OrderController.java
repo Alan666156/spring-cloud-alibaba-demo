@@ -1,14 +1,15 @@
 package com.fuhx.controller;
 
-import com.fuhx.dubbo.ApiOrderService;
+import com.fuhx.api.ApiOrderService;
 import com.fuhx.entity.Order;
 import com.fuhx.util.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -24,7 +25,7 @@ public class OrderController {
     /**
      * 服务对象
      */
-    @DubboReference(version = "1.0")
+    @Resource
     private ApiOrderService apiOrderService;
 
     /**

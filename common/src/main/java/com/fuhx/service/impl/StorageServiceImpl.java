@@ -14,7 +14,7 @@ import java.util.List;
  * @author fuhongxing
  * @since 2021-03-18 12:21:30
  */
-@Service("tStorageService")
+@Service("storageService")
 public class StorageServiceImpl implements StorageService {
     @Resource
     private StorageDao storageDao;

@@ -1,11 +1,12 @@
 package com.fuhx;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
@@ -16,6 +17,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @Slf4j
 @MapperScan("com.fuhx.dao")
 @EnableDubbo(scanBasePackages = "com.fuhx.dubbo")
+@EnableTransactionManagement
 @EnableDiscoveryClient
 @SpringBootApplication
 public class OrderApplication

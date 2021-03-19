@@ -12,6 +12,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tk.mybatis.spring.annotation.MapperScan;
 
 import java.io.Serializable;
@@ -25,6 +26,7 @@ import java.io.Serializable;
 @MapperScan("com.fuhx.dao")
 //@EnableRabbit
 @EnableAsync
+@EnableTransactionManagement
 @SpringBootApplication
 @EnableDiscoveryClient
 public class UserApplication implements CommandLineRunner

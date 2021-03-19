@@ -41,5 +41,5 @@ dubbo:
 
 mybatis:
   mapper-locations:
-    - classpath*:/mapper/*-Mapper.xml
+    - classpath*:/mapper/Dao.xml
   type-aliases-package: com.fuhx.entity

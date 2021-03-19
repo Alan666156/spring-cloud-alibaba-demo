@@ -1,4 +1,4 @@
-package com.fuhx.dubbo;
+package com.fuhx.api;
 
 import com.fuhx.entity.Order;
 import com.fuhx.util.Result;

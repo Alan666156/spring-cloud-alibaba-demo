@@ -509,7 +509,15 @@ public class RedisUtil {
             redisTemplate.delete(key);
         }
     }
-
+    //lock script
+    private static final String lockScript = " if redis.call('setnx',KEYS[1],ARGV[1]) == 1 " +
+            " then redis.call('expire',KEYS[1],ARGV[2]) " +
+            " return 1 " +
+            " else return 0 end ";
+    //unlock script
+    private static final String unlockScript = " if redis.call('get',KEYS[1]) == ARGV[1] " +
+            " then return redis.call('del',KEYS[1]) " +
+            " else return 0 end ";
     /**
      * lua脚本执行
      * @param luaScript

@@ -79,6 +79,10 @@ public class Result<T> implements Serializable {
 		return new Result(Type.FAILURE, message);
 	}
 
+	public boolean successful(){
+		return Type.SUCCESS.equals(getType());
+	}
+
 	
 	/**
 	 * 类型

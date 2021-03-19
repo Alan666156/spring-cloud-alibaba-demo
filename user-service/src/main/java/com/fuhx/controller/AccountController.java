@@ -1,12 +1,14 @@
 package com.fuhx.controller;
 
-import com.fuhx.dubbo.ApiUserService;
+import com.fuhx.api.ApiUserService;
 import com.fuhx.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * (TAccount)表控制层
@@ -21,7 +23,7 @@ public class AccountController {
     /**
      * 服务对象
      */
-    @DubboReference(version = "1.0")
+    @Resource
     private ApiUserService apiAccountService;
 
     /**

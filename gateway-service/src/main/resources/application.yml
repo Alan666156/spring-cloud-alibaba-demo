@@ -32,12 +32,13 @@ dubbo:
   application:
     name: gateway
   registry:
-    address: nacos://172.19.152.165:8848
+    address: nacos://127.0.0.1:8848
+    port: -1
   protocol:
     name: dubbo
   consumer:
     timeout: 100000
 mybatis:
   mapper-locations:
-    - classpath*:/mapper/*-Mapper.xml
+    - classpath*:/mapper/*Dao.xml
   type-aliases-package: com.fhx.entity

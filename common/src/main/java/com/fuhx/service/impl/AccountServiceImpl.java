@@ -3,7 +3,6 @@ package com.fuhx.service.impl;
 import com.fuhx.entity.Account;
 import com.fuhx.dao.AccountDao;
 import com.fuhx.service.AccountService;
-import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,7 +14,7 @@ import java.util.List;
  * @author fuhongxing
  * @since 2021-03-18 12:21:18
  */
-@Service("tAccountService")
+@Service("accountService")
 public class AccountServiceImpl implements AccountService {
     @Resource
     private AccountDao accountDao;

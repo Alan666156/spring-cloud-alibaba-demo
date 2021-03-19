@@ -14,7 +14,7 @@ import java.util.List;
  * @author fuhongxing
  * @since 2021-03-18 12:21:29
  */
-@Service("tOrderService")
+@Service("orderService")
 public class OrderServiceImpl implements OrderService {
     @Resource
     private OrderDao orderDao;

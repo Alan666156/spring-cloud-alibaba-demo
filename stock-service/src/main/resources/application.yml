@@ -30,7 +30,7 @@ management:
         include: '*'
 dubbo:
   application:
-    name: order
+    name: stock
   registry:
     address: nacos://172.19.152.165:8848
   protocol:
@@ -40,5 +40,5 @@ dubbo:
     timeout: 100000
 mybatis:
   mapper-locations:
-    - classpath*:/mapper/*-Mapper.xml
+    - classpath*:/mapper/*Dao.xml
   type-aliases-package: com.fuhx.entity
