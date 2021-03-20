@@ -9,4 +9,5 @@ public interface ApiOrderService {
      * 创建订单
      */
     Result<Order> create(String userId, String commodityCode, int orderCount);
+    Result<Order> getOrder(String orderNo);
 }

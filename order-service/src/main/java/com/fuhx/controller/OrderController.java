@@ -4,10 +4,7 @@ import com.fuhx.api.ApiOrderService;
 import com.fuhx.entity.Order;
 import com.fuhx.util.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -44,11 +41,22 @@ public class OrderController {
      *
      * @return 单条数据
      */
-    @GetMapping("/submit")
+    @PostMapping("/submit")
     public Result submitOrder(@RequestBody Order order) {
         log.info("生成订单:{}", order);
         return apiOrderService.create("1", order.getCommodityCode(), order.getCount());
     }
-    //
+
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param orderNo 订单号
+     * @return 单条数据
+     */
+    @GetMapping("/myOrder/{orderNo}")
+    public Result order(@PathVariable(name = "orderNo") String orderNo) {
+        log.info("订单查询");
+        return apiOrderService.getOrder(orderNo);
+    }
 
 }

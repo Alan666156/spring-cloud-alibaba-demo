@@ -11,15 +11,25 @@ spring:
     database: 0
     port: 6379
   datasource:
-    hikari:
-      connection-test-query: select 1
-      maximum-pool-size: 100
-      max-lifetime: 30000
-      minimum-idle: 10
+#    hikari:
+#      connection-test-query: select 1
+#      maximum-pool-size: 100
+#      max-lifetime: 30000
+#      minimum-idle: 10
     url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
     username: root
     password: root123
     driver-class-name: net.sf.log4jdbc.DriverSpy
+#dubbo:
+#  application:
+#    name: stock-service
+#  registry:
+#    address: nacos://127.0.0.1:8848
+#  protocol:
+#    name: dubbo
+#    prot: 20881
+#  consumer:
+#    timeout: 100000
 logging:
   config: classpath:log4j2.xml
 #暴露端点，这样actuator就可以监控的到健康状况
@@ -28,17 +38,30 @@ management:
     web:
       exposure:
         include: '*'
-dubbo:
-  application:
-    name: stock
-  registry:
-    address: nacos://172.19.152.165:8848
-  protocol:
-    name: dubbo
-    prot: -1
-  consumer:
-    timeout: 100000
+
 mybatis:
   mapper-locations:
     - classpath*:/mapper/*Dao.xml
   type-aliases-package: com.fuhx.entity
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group
+  enable-auto-data-source-proxy: true
+  config:
+    type: nacos
+    nacos:
+      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
+      serverAddr: 127.0.0.1:8848
+      group: "SEATA_GROUP"
+      userName: ""
+      password: ""
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
+      userName: ""
+      password: ""

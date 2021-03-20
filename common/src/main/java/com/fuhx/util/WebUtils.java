@@ -1,6 +1,7 @@
 package com.fuhx.util;
 
-import org.apache.commons.lang3.StringUtils;
+
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 

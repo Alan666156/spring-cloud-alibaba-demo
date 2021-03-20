@@ -5,7 +5,8 @@ import com.fuhx.api.ApiStorageService;
 import com.fuhx.dao.StorageDao;
 import com.fuhx.entity.Storage;
 import com.fuhx.util.Result;
-import org.apache.dubbo.config.annotation.DubboService;
+import io.seata.spring.annotation.GlobalTransactional;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.scheduling.annotation.Async;
 import tk.mybatis.mapper.entity.Example;
 
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
 /**
  * @author fuhongxing
  */
-@DubboService(version = "1.0")
+@Service(version = "1.0")
 public class ApiStorageServiceImpl implements ApiStorageService {
 
     @Resource
@@ -37,7 +38,7 @@ public class ApiStorageServiceImpl implements ApiStorageService {
         return Result.success();
     }
 
-    @Async
+    @GlobalTransactional
     @Override
     public int update(Storage storage) {
         return storageDao.update(storage);

@@ -31,13 +31,39 @@ mybatis:
   mapper-locations:
     - classpath*:/mapper/*Dao.xml
   type-aliases-package: com.fhx.entity
-dubbo:
-  application:
-    name: order
+#dubbo:
+#  application:
+#    name: order-service
+#  registry:
+#    address: nacos://127.0.0.1:8848
+#  protocol:
+#    name: dubbo
+#    prot: -1
+#  consumer:
+#    timeout: 100000
+feign:
+  hystrix:
+    enabled: false
+#是否使用分布式事物
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  #事务组，默认的跟服务端保持一致即可
+  tx-service-group: my_test_tx_group
+  enable-auto-data-source-proxy: true
+  config:
+    type: nacos
+    nacos:
+      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
+      serverAddr: 127.0.0.1:8848
+      group: "SEATA_GROUP"
+      userName: ""
+      password: ""
   registry:
-    address: nacos://172.19.152.165:8848
-  protocol:
-    name: dubbo
-    prot: 22010
-  consumer:
-    timeout: 100000
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
+      userName: ""
+      password: ""

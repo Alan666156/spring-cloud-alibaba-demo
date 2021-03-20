@@ -16,7 +16,7 @@ spring:
       maximum-pool-size: 100
       max-lifetime: 30000
       minimum-idle: 10
-    url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
+    url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: root123
     driver-class-name: net.sf.log4jdbc.DriverSpy
@@ -28,18 +28,42 @@ management:
     web:
       exposure:
         include: '*'
-dubbo:
-  application:
-    name: user
-  registry:
-    address: nacos://172.19.152.165:8848
-  protocol:
-    name: dubbo
-    prot: -1
-  consumer:
-    timeout: 100000
-
+#dubbo:
+#  application:
+#    name: user-service
+#  registry:
+#    address: nacos://127.0.0.1:8848
+#  protocol:
+#    name: dubbo
+#    prot: -1
+#  consumer:
+#    timeout: 100000
 mybatis:
   mapper-locations:
     - classpath*:/mapper/Dao.xml
   type-aliases-package: com.fuhx.entity
+debug: true
+
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  #事务组，默认的跟服务端保持一致即可
+  tx-service-group: my_test_tx_group
+  enable-auto-data-source-proxy: true
+  config:
+    type: nacos
+    nacos:
+      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
+      serverAddr: 127.0.0.1:8848
+      group: "SEATA_GROUP"
+      userName: ""
+      password: ""
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
+      userName: ""
+      password: ""

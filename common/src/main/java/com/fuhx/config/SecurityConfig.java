@@ -12,6 +12,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         //配置不需要登录验证
         http.authorizeRequests()
                 .anyRequest().permitAll().and().logout().permitAll();

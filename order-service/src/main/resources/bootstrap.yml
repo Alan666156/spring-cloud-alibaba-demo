@@ -1,15 +1,23 @@
 spring:
   cloud:
+    alibaba:
+      seata:
+        # Seata 事务组名称，对应file.conf文件中 vgroup_mapping.sca-customer-seata-tx-service-group
+        my_test_tx_group: order-service-seata-tx-service-group
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        prot: 8177
     nacos:
       discovery:
         #Nacos作为服务注册中心地址
-        service: order
-        server-addr: 172.19.152.165:8848
+#        service: order
+        server-addr: 127.0.0.1:8848
 #        enabled: true
-        namespace: c24c1dff-ab4a-48e1-b90c-344af426fe15
+        namespace: a48080b4-d024-425e-a1ee-13139e6f068b
       config:
         #Nacos作为配置中心地址
-        server-addr: 172.19.152.165:8848
+        server-addr: 127.0.0.1:8848
         # 指定配置文件的格式为yaml
         file-extension: yml
         extension-configs:
@@ -17,4 +25,14 @@ spring:
         #指定配置文件分组GROUP
 #        group: DEFAULT_GROUP
         #通过命名空间ID指定命名空间
-        namespace: c24c1dff-ab4a-48e1-b90c-344af426fe15
+        namespace: a48080b4-d024-425e-a1ee-13139e6f068b
+#dubbo:
+#  application:
+#    name: order
+#  registry:
+#    address: nacos://127.0.0.1:8848
+#  protocol:
+#    name: dubbo
+#    prot: -1
+#  consumer:
+#    timeout: 100000

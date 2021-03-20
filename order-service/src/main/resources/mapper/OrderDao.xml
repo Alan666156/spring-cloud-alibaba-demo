@@ -8,7 +8,7 @@
         <result property="userId" column="user_id" jdbcType="VARCHAR"/>
         <result property="commodityCode" column="commodity_code" jdbcType="VARCHAR"/>
         <result property="count" column="count" jdbcType="INTEGER"/>
-        <result property="amount" column="amount" jdbcType="VARCHAR"/>
+        <result property="amount" column="amount" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
@@ -19,7 +19,7 @@
                commodity_code,
                count,
                amount
-        from seata.t_order
+        from t_order
         where id = #{id}
     </select>
 
@@ -31,14 +31,14 @@
                commodity_code,
                count,
                amount
-        from seata.t_order limit #{offset}, #{limit}
+        from t_order limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="OrderMap">
         select
         id, order_no, user_id, commodity_code, count, amount
-        from seata.t_order
+        from t_order
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -63,12 +63,12 @@
 
     <!--新增所有列-->
 <!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
-<!--        insert into seata.t_order(order_no, user_id, commodity_code, count, amount)-->
+<!--        insert into t_order(order_no, user_id, commodity_code, count, amount)-->
 <!--        values (#{orderNo}, #{userId}, #{commodityCode}, #{count}, #{amount})-->
 <!--    </insert>-->
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into seata.t_order(order_no, user_id, commodity_code, count, amount)
+        insert into t_order(order_no, user_id, commodity_code, count, amount)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.orderNo}, #{entity.userId}, #{entity.commodityCode}, #{entity.count}, #{entity.amount})
@@ -76,7 +76,7 @@
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into seata.t_order(order_no, user_id, commodity_code, count, amount)
+        insert into t_order(order_no, user_id, commodity_code, count, amount)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.orderNo}, #{entity.userId}, #{entity.commodityCode}, #{entity.count}, #{entity.amount})
@@ -88,7 +88,7 @@
 
     <!--通过主键修改数据-->
     <update id="update">
-        update seata.t_order
+        update t_order
         <set>
             <if test="orderNo != null and orderNo != ''">
                 order_no = #{orderNo},
@@ -112,7 +112,7 @@
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
-        from seata.t_order
+        from t_order
         where id = #{id}
     </delete>
 

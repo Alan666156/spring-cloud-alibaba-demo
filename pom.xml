@@ -57,10 +57,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-undertow</artifactId>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>org.springframework.boot</groupId>-->
-<!--      <artifactId>spring-boot-starter-undertow</artifactId>-->
-<!--    </dependency>-->
+
     <!-- Nacos 注册与配置中心 -->
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
@@ -70,27 +67,60 @@
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
     </dependency>
+    <!-- 分布式事务 -->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+      <version>2.2.1.RELEASE</version>
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <artifactId>druid</artifactId>-->
+<!--          <groupId>com.alibaba</groupId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
+      <exclusions>
+        <exclusion>
+          <groupId>io.seata</groupId>
+          <artifactId>seata-all</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.seata</groupId>
+      <artifactId>seata-spring-boot-starter</artifactId>
+      <version>1.4.1</version>
+    </dependency>
 <!--    <dependency>-->
-<!--      <groupId>com.alibaba.cloud</groupId>-->
-<!--      <artifactId>spring-cloud-starter-alibaba-seata</artifactId>-->
-<!--    </dependency>-->
-    <!-- sentinel管理界面 localhost:8080 -->
-<!--    <dependency>-->
-<!--      <groupId>com.alibaba.cloud</groupId>-->
-<!--      <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>com.alibaba.csp</groupId>-->
-<!--      <artifactId>sentinel-datasource-nacos</artifactId>-->
-<!--      <version>1.8.1</version>-->
-<!--      <scope>test</scope>-->
+<!--      <groupId>io.seata</groupId>-->
+<!--      <artifactId>seata-all</artifactId>-->
+<!--      <version>1.4.1</version>-->
 <!--    </dependency>-->
 
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.cloud</groupId>-->
+<!--      <artifactId>spring-cloud-starter-openfeign</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.cloud</groupId>-->
+<!--      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
+<!--    </dependency>-->
+
+<!--     sentinel管理界面 localhost:8080 -->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+      <version>2.2.1.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba.csp</groupId>
+      <artifactId>sentinel-datasource-nacos</artifactId>
+      <version>1.8.1</version>
+      <scope>test</scope>
+    </dependency>
 
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-dubbo</artifactId>
-<!--      <version>2.2.1.RELEASE</version>-->
     </dependency>
     <dependency>
       <groupId>org.mybatis.spring.boot</groupId>
@@ -182,7 +212,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.18</version>
+<!--      <version>8.0.18</version>-->
       <!--		<scope>runtime</scope>-->
     </dependency>
 
@@ -191,7 +221,10 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.12</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
     <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-all</artifactId>
@@ -215,7 +248,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>2.2.2.RELEASE</version>
+        <version>2.2.6.RELEASE</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -229,7 +262,7 @@
       <dependency>
         <groupId>com.alibaba.cloud</groupId>
         <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-        <version>2.2.3.RELEASE</version>
+        <version>2.2.0.RELEASE</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>

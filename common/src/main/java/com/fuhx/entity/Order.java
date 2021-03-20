@@ -29,6 +29,6 @@ public class Order implements Serializable {
 
     private Integer count;
 
-    private Object amount;
+    private Integer amount;
 
 }
