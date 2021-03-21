@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
 
         @ExceptionHandler(Exception.class)
         public Result<?> systemExceptionHandler(Exception excepiton) {
-                log.warn("got error", excepiton.getMessage());
+                log.warn("get error", excepiton.getMessage());
                 return Result.failure("服务器忙，请稍后再试！");
         }
 }

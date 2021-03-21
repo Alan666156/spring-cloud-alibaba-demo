@@ -30,7 +30,7 @@ logging:
 mybatis:
   mapper-locations:
     - classpath*:/mapper/*Dao.xml
-  type-aliases-package: com.fhx.entity
+  type-aliases-package: com.fuhx.entity
 #dubbo:
 #  application:
 #    name: order-service
@@ -41,9 +41,9 @@ mybatis:
 #    prot: -1
 #  consumer:
 #    timeout: 100000
-feign:
-  hystrix:
-    enabled: false
+#feign:
+#  hystrix:
+#    enabled: false
 #是否使用分布式事物
 seata:
   enabled: true

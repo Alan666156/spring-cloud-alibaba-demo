@@ -1,4 +1,4 @@
-package com.fuhx.util;
+package com.fuhx.redis;
 
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;

@@ -40,7 +40,7 @@ management:
 #    timeout: 100000
 mybatis:
   mapper-locations:
-    - classpath*:/mapper/Dao.xml
+    - classpath*:/mapper/*Dao.xml
   type-aliases-package: com.fuhx.entity
 debug: true
 

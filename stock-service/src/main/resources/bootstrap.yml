@@ -21,6 +21,7 @@ spring:
         file-extension: yml
         extension-configs:
           - dataId: redis.yml
+          - dataId: rabbitmq.yml
         #指定配置文件分组GROUP
 #        group: DEFAULT_GROUP
         #通过命名空间ID指定命名空间

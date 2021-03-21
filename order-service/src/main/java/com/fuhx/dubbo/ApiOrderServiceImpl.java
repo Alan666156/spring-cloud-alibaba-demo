@@ -1,6 +1,6 @@
 package com.fuhx.dubbo;
 
-import cn.hutool.core.util.IdUtil;
+import com.baidu.fsg.uid.impl.CachedUidGenerator;
 import com.fuhx.api.ApiOrderService;
 import com.fuhx.api.ApiStorageService;
 import com.fuhx.api.ApiUserService;
@@ -29,6 +29,8 @@ public class ApiOrderServiceImpl implements ApiOrderService {
     private ApiStorageService storageService;
     @Resource
     private RedissonClient redissonClient;
+    @Resource
+    private CachedUidGenerator cachedUidGenerator;
 
     @GlobalTransactional
     @Override
@@ -38,10 +40,10 @@ public class ApiOrderServiceImpl implements ApiOrderService {
         //扣减库存
         storageService.deduct(commodityCode, orderCount);
         userService.debit(userId, orderMoney);
-        int i = 1/0;
+//        int i = 1/0;
         Order order = new Order();
         order.setUserId(userId);
-        order.setOrderNo(IdUtil.simpleUUID());
+        order.setOrderNo(String.valueOf(cachedUidGenerator.getUID()));
         order.setCommodityCode(commodityCode);
         order.setCount(orderCount);
         order.setAmount(orderMoney);

@@ -11,15 +11,22 @@ spring:
     database: 0
     port: 6379
   datasource:
-#    hikari:
-#      connection-test-query: select 1
-#      maximum-pool-size: 100
-#      max-lifetime: 30000
-#      minimum-idle: 10
+    hikari:
+      connection-test-query: select 1
+      maximum-pool-size: 100
+      max-lifetime: 30000
+      minimum-idle: 10
     url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
     username: root
     password: root123
     driver-class-name: net.sf.log4jdbc.DriverSpy
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    virtual-host: fuhx
+#    username: admin
+#    password: 123456
+
 #dubbo:
 #  application:
 #    name: stock-service

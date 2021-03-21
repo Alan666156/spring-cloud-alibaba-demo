@@ -30,7 +30,7 @@ public class ApiUserServiceImpl implements ApiUserService {
             return Result.failure("用户不存在");
         }
         account.setAmount(account.getAmount() - money);
-        accountDao.updateByPrimaryKey(account);
+        accountDao.update(account);
         return Result.success();
     }
 

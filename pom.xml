@@ -105,19 +105,24 @@
 <!--      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
 <!--    </dependency>-->
 
-<!--     sentinel管理界面 localhost:8080 -->
+<!--     sentinel注册 管理服务 localhost:8080 -->
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
       <version>2.2.1.RELEASE</version>
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <artifactId>spring-cloud-alibaba-sentinel-datasource</artifactId>-->
+<!--          <groupId>com.alibaba.cloud</groupId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
     </dependency>
+    <!--     sentinel数据源 -->
     <dependency>
       <groupId>com.alibaba.csp</groupId>
       <artifactId>sentinel-datasource-nacos</artifactId>
       <version>1.8.1</version>
-      <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-dubbo</artifactId>
@@ -137,10 +142,7 @@
       <artifactId>pagehelper-spring-boot-starter</artifactId>
       <version>1.3.0</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>org.springframework.boot</groupId>-->
-<!--      <artifactId>spring-boot-starter-amqp</artifactId>-->
-<!--    </dependency>-->
+
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
