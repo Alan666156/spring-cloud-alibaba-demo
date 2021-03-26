@@ -31,8 +31,7 @@ public class AccountController {
     @GetMapping("/userList")
     public Result userList() {
         log.info("用户查询");
-        apiAccountService.getUser("1");
-        return Result.success();
+        return apiAccountService.getUser("49999");
     }
 
 }

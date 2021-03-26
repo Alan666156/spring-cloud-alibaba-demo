@@ -1,6 +1,8 @@
 package com.fuhx.service;
 
+import com.fuhx.dto.ApplyOutOrderDTO;
 import com.fuhx.entity.Storage;
+import com.fuhx.util.Result;
 
 import java.util.List;
 
@@ -52,5 +54,19 @@ public interface StorageService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+
+    /**
+     * 申请出库
+     * @param applyOutOrderDTO 请求对象
+     * @return result
+     */
+    Result applyOutbound(ApplyOutOrderDTO applyOutOrderDTO);
+
+    /**
+     * 确认出库
+     * @param applyOutOrderDTO 请求对象
+     * @return result
+     */
+    Result confirmOutbound(ApplyOutOrderDTO applyOutOrderDTO);
 
 }

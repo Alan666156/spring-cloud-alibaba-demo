@@ -149,7 +149,7 @@ public class RedisUtil {
     }
 
     /**
-     * 增加值
+     * 增加值(指定参数递增)
      *
      * @param key
      * @param <T>

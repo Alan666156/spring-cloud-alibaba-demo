@@ -1,9 +1,12 @@
 package com.fuhx.service.impl;
 
+import com.fuhx.dto.ApplyOutOrderDTO;
 import com.fuhx.entity.Storage;
 import com.fuhx.dao.StorageDao;
 import com.fuhx.service.StorageService;
+import com.fuhx.util.Result;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -75,5 +78,24 @@ public class StorageServiceImpl implements StorageService {
     @Override
     public boolean deleteById(Integer id) {
         return this.storageDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public Result applyOutbound(ApplyOutOrderDTO applyOutOrderDTO) {
+        Example example = new Example(Storage.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("commodityCode", applyOutOrderDTO.getCommodityCode());
+        Storage storage = storageDao.selectOneByExample(example);
+        if(storage == null){
+            return Result.failure("商品不存在");
+        }
+        storage.setCount(storage.getCount() - applyOutOrderDTO.getCount());
+        storageDao.update(storage);
+        return Result.success(storage);
+    }
+
+    @Override
+    public Result confirmOutbound(ApplyOutOrderDTO applyOutOrderDTO) {
+        return null;
     }
 }

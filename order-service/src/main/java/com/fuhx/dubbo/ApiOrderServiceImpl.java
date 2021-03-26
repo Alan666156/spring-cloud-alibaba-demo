@@ -6,6 +6,7 @@ import com.fuhx.api.ApiStorageService;
 import com.fuhx.api.ApiUserService;
 import com.fuhx.dao.OrderDao;
 import com.fuhx.entity.Order;
+import com.fuhx.mq.RabbitMqProducer;
 import com.fuhx.util.Result;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.dubbo.config.annotation.Reference;
@@ -31,6 +32,8 @@ public class ApiOrderServiceImpl implements ApiOrderService {
     private RedissonClient redissonClient;
     @Resource
     private CachedUidGenerator cachedUidGenerator;
+    @Resource
+    private RabbitMqProducer rabbitMqProducer;
 
     @GlobalTransactional
     @Override
@@ -38,7 +41,7 @@ public class ApiOrderServiceImpl implements ApiOrderService {
         //金额扣减
         int orderMoney = 100;
         //扣减库存
-        storageService.deduct(commodityCode, orderCount);
+//        storageService.deduct(commodityCode, orderCount);
         userService.debit(userId, orderMoney);
 //        int i = 1/0;
         Order order = new Order();
@@ -47,7 +50,10 @@ public class ApiOrderServiceImpl implements ApiOrderService {
         order.setCommodityCode(commodityCode);
         order.setCount(orderCount);
         order.setAmount(orderMoney);
+        order.setStatus("0");
         int count = orderDao.insert(order);
+        //库存系统
+        rabbitMqProducer.sendOrder(order);
         return Result.success(order);
     }
 
