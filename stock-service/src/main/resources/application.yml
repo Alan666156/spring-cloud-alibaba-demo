@@ -21,7 +21,7 @@ spring:
     password: root123
     driver-class-name: net.sf.log4jdbc.DriverSpy
 #  rabbitmq:
-#    host: 127.0.0.1
+#    host: 101.133.234.7
 #    port: 5672
 #    virtual-host: fuhx
 #    username: admin
@@ -31,7 +31,7 @@ spring:
 #  application:
 #    name: stock-service
 #  registry:
-#    address: nacos://127.0.0.1:8848
+#    address: nacos://101.133.234.7:8848
 #  protocol:
 #    name: dubbo
 #    prot: 20881
@@ -60,7 +60,7 @@ seata:
     type: nacos
     nacos:
       namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
-      serverAddr: 127.0.0.1:8848
+      serverAddr: 101.133.234.7:8848
       group: "SEATA_GROUP"
       userName: ""
       password: ""
@@ -68,7 +68,7 @@ seata:
     type: nacos
     nacos:
       application: seata-server
-      server-addr: 127.0.0.1:8848
+      server-addr: 101.133.234.7:8848
       namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
       userName: ""
       password: ""

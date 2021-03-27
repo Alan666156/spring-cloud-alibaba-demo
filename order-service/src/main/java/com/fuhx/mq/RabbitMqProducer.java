@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class RabbitMqProducer {
+public class RabbitMqProducer implements RabbitTemplate.ConfirmCallback{
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -29,7 +29,7 @@ public class RabbitMqProducer {
             message = JSONObject.toJSONString(message);
         }
         // 定义消息ID唯一确定消息
-        log.info("Send MQ Message:{} {}[{}] {}", exchange, routingKey, msgId, message);
+        log.info("Send MQ Message:{}, {}, {}, {}", exchange, routingKey, msgId, message);
         rabbitTemplate.convertAndSend(exchange, routingKey, message, new CorrelationData(msgId));
     }
 
@@ -40,4 +40,18 @@ public class RabbitMqProducer {
         send(QueueConstant.QUEUE_FUHX_ORDER, IdUtil.fastUUID(), order);
     }
 
+    /**
+     * 消息发送到 Broker 后触发回调，确认消息是否到达 Broker 服务器
+     * @param correlationData
+     * @param ack
+     * @param cause
+     */
+    @Override
+    public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+        if(ack){
+            log.info("{}[RabbitMQ 消息发送结果:]  成功！", correlationData);
+        }else{
+            log.error("[RabbitMQ 消息发送结果:]  失败！消息唯一标识{}, 失败原因:{}",correlationData, cause);
+        }
+    }
 }
