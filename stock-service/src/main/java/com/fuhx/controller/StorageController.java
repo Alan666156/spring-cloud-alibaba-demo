@@ -1,6 +1,5 @@
 package com.fuhx.controller;
 
-import cn.hutool.core.util.StrUtil;
 import com.fuhx.api.ApiStorageService;
 import com.fuhx.entity.Storage;
 import com.fuhx.util.Result;
@@ -13,10 +12,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.scripting.support.ResourceScriptSource;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sun.security.util.SecurityConstants;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -95,7 +92,7 @@ public class StorageController {
                 apiStorageService.update(result.getData().setCount(Math.toIntExact(res)));
             }
         } catch (Exception e) {
-            log.error("库存扣减异常异常:", e);
+            log.error("库存扣减异常:", e);
         }finally {
             if(lock.isHeldByCurrentThread()){
                 lock.unlock();

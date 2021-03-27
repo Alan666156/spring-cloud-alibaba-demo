@@ -55,7 +55,7 @@ seata:
     type: nacos
     nacos:
       namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
-      serverAddr: 101.133.234.7:8848
+      serverAddr: 127.0.0.1:8848
       group: "SEATA_GROUP"
       userName: ""
       password: ""
@@ -63,7 +63,7 @@ seata:
     type: nacos
     nacos:
       application: seata-server
-      server-addr: 101.133.234.7:8848
+      server-addr: 127.0.0.1:8848
       namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
       userName: ""
       password: ""

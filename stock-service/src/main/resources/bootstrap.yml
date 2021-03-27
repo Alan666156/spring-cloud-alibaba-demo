@@ -11,12 +11,12 @@ spring:
     nacos:
       discovery:
         #Nacos作为服务注册中心地址
-        server-addr: 101.133.234.7:8848
+        server-addr: 127.0.0.1:8848
 #        enabled: true
         namespace: a48080b4-d024-425e-a1ee-13139e6f068b
       config:
         #Nacos作为配置中心地址
-        server-addr: 101.133.234.7:8848
+        server-addr: 127.0.0.1:8848
         # 指定配置文件的格式为yaml
         file-extension: yml
         extension-configs:
