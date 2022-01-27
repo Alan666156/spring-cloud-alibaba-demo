@@ -1,6 +1,5 @@
 package com.fuhx.api;
 
-import com.fuhx.entity.Account;
 import com.fuhx.util.Result;
 
 public interface ApiUserService {

@@ -32,7 +32,7 @@ dubbo:
   application:
     name: gateway
   registry:
-    address: nacos://127.0.0.1:8848
+    address: nacos://101.133.234.7:8848
     port: -1
   protocol:
     name: dubbo

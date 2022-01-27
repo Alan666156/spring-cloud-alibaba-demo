@@ -18,6 +18,21 @@ spring:
       maximum-pool-size: 100
       max-lifetime: 30000
       minimum-idle: 10
+  zipkin:
+    base-url:
+    sender:
+      type: web
+    enabled: true
+#  rabbitmq:
+#    listener:
+#      direct:
+#        acknowledge-mode: manual
+#      simple:
+#        #每个listener在初始化的时候设置的并发消费者的个数
+#        acknowledge-mode: manual
+#        concurrency: 5
+#        #每个listener最大的消费数量
+#        max-concurrency: 5
 logging:
   config: classpath:log4j2.xml
   #暴露端点，这样actuator就可以监控的到健康状况
@@ -26,7 +41,6 @@ logging:
       web:
         exposure:
           include: '*'
-#debug: true
 mybatis:
   mapper-locations:
     - classpath*:/mapper/*Dao.xml
@@ -35,7 +49,7 @@ mybatis:
 #  application:
 #    name: order-service
 #  registry:
-#    address: nacos://127.0.0.1:8848
+#    address: nacos://101.133.234.7:8848
 #  protocol:
 #    name: dubbo
 #    prot: -1
@@ -55,7 +69,7 @@ seata:
     type: nacos
     nacos:
       namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
-      serverAddr: 127.0.0.1:8848
+      serverAddr: 101.133.234.7:8848
       group: "SEATA_GROUP"
       userName: ""
       password: ""
@@ -63,7 +77,8 @@ seata:
     type: nacos
     nacos:
       application: seata-server
-      server-addr: 127.0.0.1:8848
+      server-addr: 101.133.234.7:8848
       namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
       userName: ""
       password: ""
+#debug: true

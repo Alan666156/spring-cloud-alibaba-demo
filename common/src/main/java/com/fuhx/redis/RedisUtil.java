@@ -132,6 +132,27 @@ public class RedisUtil {
     }
 
     /**
+     * 写入缓存
+     *
+     * @param key
+     * @param value
+     * @param expireTime 有效时间
+     * @return
+     */
+    public boolean set(final String key, Object value, Long expireTime, TimeUnit timeUnit) {
+        boolean result = false;
+        try {
+            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
+            operations.set(key, value);
+            redisTemplate.expire(key, expireTime, timeUnit);
+            result = true;
+        } catch (Exception e) {
+            log.error("redis缓存写入异常...", e);
+        }
+        return result;
+    }
+
+    /**
      * 增加值
      *
      * @param key

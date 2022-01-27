@@ -16,8 +16,8 @@ import java.io.Serializable;
 @Data
 @Table(name="t_account")
 public class Account implements Serializable {
-    private static final long serialVersionUID = 395939172856341048L;
 
+    private static final long serialVersionUID = -2507957438718313061L;
     private Integer id;
 
     private String userId;

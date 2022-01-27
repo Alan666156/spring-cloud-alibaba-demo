@@ -14,8 +14,8 @@ import java.io.Serializable;
 @Accessors(chain = true)
 @Data
 public class ApplyOutOrderDTO implements Serializable {
-    private static final long serialVersionUID = -48469399210531969L;
 
+    private static final long serialVersionUID = -8822207926436656100L;
     private Integer id;
 
     private String orderNo;

@@ -90,7 +90,7 @@ public class Result<T> implements Serializable {
 	 * @author ultrafrog
 	 * @since 1.0
 	 */
-	public enum Type {
+	public static enum Type {
 		
 		/** 成功 */
 		SUCCESS, 

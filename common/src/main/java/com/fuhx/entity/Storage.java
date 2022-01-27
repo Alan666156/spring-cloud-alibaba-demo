@@ -1,7 +1,6 @@
 package com.fuhx.entity;
 
 import lombok.Data;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Table;

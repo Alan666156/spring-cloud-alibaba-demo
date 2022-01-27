@@ -19,6 +19,7 @@ import java.util.List;
  */
 @Service("storageService")
 public class StorageServiceImpl implements StorageService {
+
     @Resource
     private StorageDao storageDao;
 

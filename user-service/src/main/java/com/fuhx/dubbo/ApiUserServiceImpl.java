@@ -4,6 +4,7 @@ import com.fuhx.api.ApiUserService;
 import com.fuhx.dao.AccountDao;
 import com.fuhx.entity.Account;
 import com.fuhx.util.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
 /**
  * @author fuhongxing
  */
+@Slf4j
 @Service(version = "1.0")
 public class ApiUserServiceImpl implements ApiUserService {
     @Resource
@@ -22,6 +24,7 @@ public class ApiUserServiceImpl implements ApiUserService {
      */
     @Override
     public Result debit(String userId, int money){
+        log.info("扣款调用:{}-{}", userId, money);
         Example example = new Example(Account.class);
         Criteria criteria = example.createCriteria();
         criteria.andEqualTo("userId", userId);

@@ -62,7 +62,7 @@ public class OrderConsumer implements InitializingBean {
         if (!"0".equals(order.getStatus())) {
             log.info("订单申请出库MQ队列,订单状态非成功，订单号：{}，订单状态：{}", order.getOrderNo(), order.getStatus());
             //ack确认，mq消息中移除
-            channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), true);
+            channel.basicAck(tag, true);
             return;
         }
 

@@ -1,5 +1,5 @@
 server:
-  port: 9003
+  port: 9006
 spring:
   application:
     name: product-service
@@ -8,16 +8,25 @@ spring:
     password: root123
     database: 0
     port: 6379
-    datasource:
-      hikari:
-        connection-test-query: select 1
-        maximum-pool-size: 100
-        max-lifetime: 30000
-        minimum-idle: 10
-      url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
-      username: root
-      password: root123
-      driver-class-name: net.sf.log4jdbc.DriverSpy
+  datasource:
+    url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root123
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    hikari:
+      connection-test-query: select 1
+      maximum-pool-size: 100
+      max-lifetime: 30000
+      minimum-idle: 10
+  elasticsearch:
+    rest:
+      uris: http://101.133.234.7:9200
+      #读取超时时间
+      read-timeout: 20s
+      #连接超时时间
+      connection-timeout: 10s
+#      username:
+#      password:
 logging:
   config: classpath:log4j2.xml
   #暴露端点，这样actuator就可以监控的到健康状况
@@ -26,17 +35,31 @@ logging:
       web:
         exposure:
           include: '*'
-
-  #mybatis:
-  #  mapper-locations:
-  #    - classpath*:/mapper/*-Mapper.xml
-  #  type-aliases-package: com.fhx.domain
-dubbo:
-  application:
-    name: product
+mybatis:
+  mapper-locations:
+    - classpath*:/mapper/*Dao.xml
+  type-aliases-package: com.fuhx.entity
+#是否使用分布式事物
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  #事务组，默认的跟服务端保持一致即可
+  tx-service-group: my_test_tx_group
+  enable-auto-data-source-proxy: true
+  config:
+    type: nacos
+    nacos:
+      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
+      serverAddr: 101.133.234.7:8848
+      group: "SEATA_GROUP"
+      userName: ""
+      password: ""
   registry:
-    address: nacos://127.0.0.1:8848
-  protocol:
-    name: dubbo
-  consumer:
-    timeout: 100000
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 101.133.234.7:8848
+      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
+      userName: ""
+      password: ""
+#debug: true
