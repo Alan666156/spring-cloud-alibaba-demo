@@ -1,19 +1,53 @@
 spring:
   cloud:
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
+#        prot: 8179
     nacos:
       discovery:
         #Nacos作为服务注册中心地址
-        server-addr: localhost:8848
-        enabled: true
-        namespace: a48080b4-d024-425e-a1ee-13139e6f068b
+        server-addr: 127.0.0.1:8848
+        namespace: 6744230a-8663-471a-88b0-3c277610b521
+#        register-enabled: false
+#        enabled: true
       config:
-        #Nacos作为配置中心地址
-        server-addr: localhost:8848
-        # 指定配置文件的格式为yaml
+        server-addr: 127.0.0.1:8848
+        # 指定配置文件的格式为yml
         file-extension: yml
         extension-configs:
           - dataId: redis.yml
         #指定配置文件分组GROUP
 #        group: DEFAULT_GROUP
         #通过命名空间ID指定命名空间
-        namespace: a48080b4-d024-425e-a1ee-13139e6f068b
+        namespace: 6744230a-8663-471a-88b0-3c277610b521
+    gateway:
+      discovery:
+        locator:
+          filters:
+            - StripPrefix=1
+          #开启从注册中心动态创建路由的功能，利用微服务名称进行路由
+#          enabled: true
+            #过滤器，请求过程中可对其进行修改；转发之前去掉1层路径
+#      routes:
+#        - id: user-service
+#          uri: lb://user-service
+#          predicates:
+#            - Path=/user/**
+#          filters:
+#            - StripPrefix=1
+
+#      globalcors:
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins: '*'
+#            allowedHeaders:
+#              - 'Authorization'
+#              - 'Content-Type'
+#            allowedMethods:
+#              - GET
+#              - POST
+#              - DELETE
+#              - PUT
+#              - OPTIONS
+#              - PATCH

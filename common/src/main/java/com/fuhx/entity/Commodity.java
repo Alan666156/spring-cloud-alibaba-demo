@@ -8,14 +8,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * (TCOMMODITY)商品实体类
+ * (COMMODITY)商品实体类
  *
  * @author fuhongxing
  * @since 2021-03-18 12:21:30
  */
 @Accessors(chain = true)
 @Data
-@Table(name="t_commodity")
+@Table(name="commodity_tbl")
 public class Commodity implements Serializable {
     private static final long serialVersionUID = -17086095273773481L;
 

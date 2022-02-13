@@ -1,4 +1,4 @@
-package com.fuhx.config;
+package com.fuhx.service;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -6,8 +6,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * security config 解决访问http接口，页面弹出login登录
- * springboot2.0版本以后需要手动配置类，1.x版本中配置文件加入security.basic.enabled=false，2.0版本以后配置不生效
+ * security config
+ * springboot2.0版本以后需要手动配置类，1.x版本中配置文件加入security.basic.enabled=false可以，2.0版本以后配置不生效
  */
 @Configuration
 @EnableWebSecurity

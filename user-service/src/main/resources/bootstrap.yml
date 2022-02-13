@@ -11,12 +11,12 @@ spring:
     nacos:
       discovery:
         #Nacos作为服务注册中心地址
-        server-addr: 101.133.234.7:8848
-#        enabled: true
-        namespace: a48080b4-d024-425e-a1ee-13139e6f068b
+        server-addr: 127.0.0.1:8848
+        namespace: 6744230a-8663-471a-88b0-3c277610b521
+#        service: user
       config:
         #Nacos作为配置中心地址
-        server-addr: 101.133.234.7:8848
+        server-addr: 127.0.0.1:8848
         # 指定配置文件的格式为yaml
         file-extension: yml
         extension-configs:
@@ -24,7 +24,7 @@ spring:
         #指定配置文件分组GROUP
 #        group: DEFAULT_GROUP
         #通过命名空间ID指定命名空间
-        namespace: a48080b4-d024-425e-a1ee-13139e6f068b
+        namespace: 6744230a-8663-471a-88b0-3c277610b521
 #dubbo:
 #  application:
 #    name: user
@@ -38,6 +38,6 @@ spring:
 #  consumer:
 #    timeout: 100000
 #  config-center:
-#    address: nacos://101.133.234.7:8848
+#    address: nacos://127.0.0.1:8848
 #  scan:
 #    base-packages: com.fuhx.dubbo

@@ -10,27 +10,30 @@ import com.fuhx.mq.RabbitMqProducer;
 import com.fuhx.util.Result;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
-import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.redisson.api.RLock;
+import org.redisson.api.RScript;
 import org.redisson.api.RedissonClient;
+import org.redisson.client.codec.IntegerCodec;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author fuhx
  */
 @Slf4j
-@Service(version = "1.0")
+@DubboService(version = "1.0")
 public class ApiOrderServiceImpl implements ApiOrderService {
 
     @Resource
     private OrderDao orderDao;
-    @Reference(version = "1.0", check =false)
+    @DubboReference(version = "1.0", check =false)
     private ApiUserService userService;
-    @Reference(version = "1.0", check =false)
+    @DubboReference(version = "1.0", check =false)
     private ApiStorageService storageService;
     @Resource
     private RedissonClient redissonClient;
@@ -38,7 +41,28 @@ public class ApiOrderServiceImpl implements ApiOrderService {
     private CachedUidGenerator cachedUidGenerator;
     @Resource
     private RabbitMqProducer rabbitMqProducer;
+    /**
+     * lua库存扣减
+     */
+    private String                       subStockScript       = "local c = redis.call('DECRBY', KEYS[1], ARGV[1]);" +
+            "if(c < 0) then " +
+            "redis.call('INCRBY', KEYS[1], ARGV[1]);" +
+            "return -1;" +
+            "else " +
+            "return c;" +
+            "end;";
+    /**
+     * 存放redis产品库存key
+     */
+    public static final String PRODUCT_STORE_REDIS_KEY = "productStore";
 
+    /**
+     * 创建订单
+     * @param userId 用户
+     * @param commodityCode 商品编码
+     * @param orderCount 购买数量
+     * @return
+     */
     @GlobalTransactional
     @Override
     public Result<Order> create(String userId, String commodityCode, int orderCount) {
@@ -50,8 +74,16 @@ public class ApiOrderServiceImpl implements ApiOrderService {
             }
             //金额扣减
             int orderMoney = 100;
-            //扣减库存
-//        storageService.deduct(commodityCode, orderCount);
+            //扣减库存，从redis中获取商品库存数据，进行库存预占扣减
+            Long n = redissonClient.getScript(IntegerCodec.INSTANCE).eval(RScript.Mode.READ_WRITE, subStockScript, RScript.ReturnType.INTEGER,
+                    Collections.singletonList(PRODUCT_STORE_REDIS_KEY + commodityCode), orderCount);
+            if (n == -1) {
+                log.info("{}请求下单, {}商品库存不足:{}", userId, commodityCode, n);
+                //TODO 此处可用map集合标记库存是否足够
+                return Result.failure("已售罄");
+            }
+//            storageService.deduct(commodityCode, orderCount);
+            //用户扣款
             userService.debit(userId, orderMoney);
 //        int i = 1/0;
             Order order = new Order();
@@ -62,11 +94,12 @@ public class ApiOrderServiceImpl implements ApiOrderService {
             order.setAmount(orderMoney);
             order.setStatus("0");
             int count = orderDao.insert(order);
-            //库存系统
+            //mq通知库存系统
             rabbitMqProducer.sendOrder(order);
             return Result.success(order);
         } catch (Exception e) {
             log.error("订单创建异常:", e);
+//            return Result.failure("订单创建失败");
         }finally {
             if(lock.isHeldByCurrentThread()){
                 lock.unlock();

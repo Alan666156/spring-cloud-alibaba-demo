@@ -90,6 +90,7 @@ public class StorageServiceImpl implements StorageService {
         if(storage == null){
             return Result.failure("商品不存在");
         }
+        //扣减库存
         storage.setCount(storage.getCount() - applyOutOrderDTO.getCount());
         storageDao.update(storage);
         return Result.success(storage);

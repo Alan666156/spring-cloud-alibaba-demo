@@ -20,26 +20,27 @@ spring:
     username: root
     password: root123
     driver-class-name: net.sf.log4jdbc.DriverSpy
-#  rabbitmq:
-#    host: 101.133.234.7
-#    port: 5672
-#    virtual-host: fuhx
-#    username: admin
-#    password: 123456
-#    listener:
-#      simple:
-#        acknowledge-mode: manual
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: fuhx
+    username: admin
+    password: admin123
+    #消息确认模式（NONE不确认，AUTO自动确认，MANUAL手动确认）
+    listener:
+      simple:
+        acknowledge-mode: manual
 
-#dubbo:
-#  application:
-#    name: stock-service
-#  registry:
-#    address: nacos://101.133.234.7:8848
-#  protocol:
-#    name: dubbo
-#    prot: 20881
-#  consumer:
-#    timeout: 100000
+dubbo:
+  application:
+    name: stock-service
+  registry:
+    address: nacos://127.0.0.1:8848
+  protocol:
+    name: dubbo
+    prot: -1
+  consumer:
+    timeout: 100000
 logging:
   config: classpath:log4j2.xml
 #暴露端点，这样actuator就可以监控的到健康状况
@@ -62,16 +63,18 @@ seata:
   config:
     type: nacos
     nacos:
-      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
-      serverAddr: 101.133.234.7:8848
-      group: "SEATA_GROUP"
+      namespace: "6744230a-8663-471a-88b0-3c277610b521"
+      serverAddr: 127.0.0.1:8848
+      group: "DEFAULT_GROUP"
+      data-id: "seataServer.properties"
       userName: ""
       password: ""
   registry:
     type: nacos
     nacos:
       application: seata-server
-      server-addr: 101.133.234.7:8848
-      namespace: "0d07f516-5113-4731-aab6-cb7b13633219"
+      server-addr: 127.0.0.1:8848
+      namespace: "6744230a-8663-471a-88b0-3c277610b521"
       userName: ""
       password: ""
+      group: "DEFAULT_GROUP"

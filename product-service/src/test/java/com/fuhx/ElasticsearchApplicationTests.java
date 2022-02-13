@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.query.*;
@@ -28,7 +29,8 @@ public class ElasticsearchApplicationTests {
     private CommodityService commodityService;
     @Autowired
     public ElasticsearchRestTemplate elasticsearchRestTemplate;
-
+//    @Autowired
+//    public ElasticsearchOperations elasticsearchOperations;
     @Test
     public void contextLoads() {
         System.out.println(commodityService.count());
@@ -114,6 +116,7 @@ public class ElasticsearchApplicationTests {
             commodity.setCreateTime(DateUtil.offsetDay(new Date(), i));
             IndexQuery indexQuery = new IndexQueryBuilder().withObject(commodity).build();
             String index = elasticsearchRestTemplate.index(indexQuery);
+//            String index = elasticsearchRestTemplate.index(indexQuery, elasticsearchOperations.getIndexCoordinatesFor(commodity.getClass()));
         }
     }
 
@@ -122,7 +125,10 @@ public class ElasticsearchApplicationTests {
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
                 .withQuery(QueryBuilders.matchQuery("name", "吐司"))
                 .build();
+        //6.x版本查询
         List<CommodityDTO> list = elasticsearchRestTemplate.queryForList(searchQuery, CommodityDTO.class);
+        //7.x版本查询
+//        SearchHits<CommodityDTO> list = elasticsearchRestTemplate.search(searchQuery, CommodityDTO.class);
         log.info("全文检索结果：{}", list);
     }
 
@@ -136,8 +142,13 @@ public class ElasticsearchApplicationTests {
         //查询值
         String value = "面包";
         MatchQueryBuilder builder = QueryBuilders.matchQuery(field, value);
-        SearchQuery searchQuery = new NativeSearchQuery(builder).setPageable(PageRequest.of(0, 5));
+        NativeSearchQuery searchQuery = new NativeSearchQuery(builder).setPageable(PageRequest.of(0, 5));
+        //6.x版本查询
         AggregatedPage<CommodityDTO> page = elasticsearchRestTemplate.queryForPage(searchQuery, CommodityDTO.class);
+        //7.x版本查询
+//        AggregatedPage<CommodityDTO> page = elasticsearchRestTemplate.queryForPage(searchQuery, CommodityDTO.class,elasticsearchOperations.getIndexCoordinatesFor(CommodityDTO.class));
+//        elasticsearchRestTemplate.searchScrollStart(0L, searchQuery, CommodityDTO.class, elasticsearchOperations.getIndexCoordinatesFor(CommodityDTO.class));
+
         // 总记录数
         long totalElements = page.getTotalElements();
         // 总页数

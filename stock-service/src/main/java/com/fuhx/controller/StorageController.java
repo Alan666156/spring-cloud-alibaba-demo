@@ -74,8 +74,12 @@ public class StorageController {
                 log.info("并发锁操作" + Thread.currentThread().getId());
                 return Result.failure("请求过于频繁，请稍后再试");
             }
-            String code = "C201901140001";
+            String code = "1501061";
             Result<Storage> result = apiStorageService.findByCommodityCode(code);
+            if(!result.successful()){
+                log.info("获取商品信息异常:{}", result);
+                return result;
+            }
             //限流的key
             String limitKey ="limitKey";
             //限制次数

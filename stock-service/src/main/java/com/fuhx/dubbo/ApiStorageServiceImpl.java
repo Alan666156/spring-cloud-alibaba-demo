@@ -6,8 +6,7 @@ import com.fuhx.dao.StorageDao;
 import com.fuhx.entity.Storage;
 import com.fuhx.util.Result;
 import io.seata.spring.annotation.GlobalTransactional;
-import org.apache.dubbo.config.annotation.Service;
-import org.springframework.scheduling.annotation.Async;
+import org.apache.dubbo.config.annotation.DubboService;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
@@ -15,7 +14,7 @@ import javax.annotation.Resource;
 /**
  * @author fuhongxing
  */
-@Service(version = "1.0")
+@DubboService(version = "1.0")
 public class ApiStorageServiceImpl implements ApiStorageService {
 
     @Resource
@@ -23,6 +22,9 @@ public class ApiStorageServiceImpl implements ApiStorageService {
 
     /**
      * 扣除存储数量
+     * @param commodityCode 商品编码
+     * @param count 购买数量
+     * @return
      */
     @Override
     public Result deduct(String commodityCode, int count){

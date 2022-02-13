@@ -7,14 +7,14 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * (TOrder)实体类
+ * (Order)实体类
  *
  * @author fuhongxing
  * @since 2021-03-18 12:21:28
  */
 @Accessors(chain = true)
 @Data
-@Table(name="t_order")
+@Table(name="order_tbl")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -760250662967728236L;

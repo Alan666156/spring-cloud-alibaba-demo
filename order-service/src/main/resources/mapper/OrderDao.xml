@@ -19,7 +19,7 @@
                commodity_code,
                count,
                amount
-        from t_order
+        from order_tbl
         where id = #{id}
     </select>
 
@@ -31,14 +31,14 @@
                commodity_code,
                count,
                amount
-        from t_order limit #{offset}, #{limit}
+        from order_tbl limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="OrderMap">
         select
         id, order_no, user_id, commodity_code, count, amount
-        from t_order
+        from order_tbl
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -63,12 +63,12 @@
 
     <!--新增所有列-->
 <!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
-<!--        insert into t_order(order_no, user_id, commodity_code, count, amount)-->
+<!--        insert into order_tbl(order_no, user_id, commodity_code, count, amount)-->
 <!--        values (#{orderNo}, #{userId}, #{commodityCode}, #{count}, #{amount})-->
 <!--    </insert>-->
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into t_order(order_no, user_id, commodity_code, count, amount)
+        insert into order_tbl(order_no, user_id, commodity_code, count, amount)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.orderNo}, #{entity.userId}, #{entity.commodityCode}, #{entity.count}, #{entity.amount})
@@ -76,7 +76,7 @@
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into t_order(order_no, user_id, commodity_code, count, amount)
+        insert into order_tbl(order_no, user_id, commodity_code, count, amount)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.orderNo}, #{entity.userId}, #{entity.commodityCode}, #{entity.count}, #{entity.amount})
@@ -88,7 +88,7 @@
 
     <!--通过主键修改数据-->
     <update id="update">
-        update t_order
+        update order_tbl
         <set>
             <if test="orderNo != null and orderNo != ''">
                 order_no = #{orderNo},
@@ -112,7 +112,7 @@
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
-        from t_order
+        from order_tbl
         where id = #{id}
     </delete>
 

@@ -43,7 +43,7 @@ public class OrderController {
      */
     @PostMapping("/submit")
     public Result submitOrder(@RequestBody Order order) {
-        log.info("生成订单:{}", order);
+        log.info("下单请求:{}", order);
         return apiOrderService.create("49999", order.getCommodityCode(), order.getCount());
     }
 

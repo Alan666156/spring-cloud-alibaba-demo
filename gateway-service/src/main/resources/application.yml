@@ -1,12 +1,12 @@
 server:
-  port: 9001
+  port: 8888
 spring:
   application:
     name: gateway
 #  profiles:
-#    active: ft1
+#    active: dev
   redis:
-    url: localhost
+    url: 127.0.0.1
     password: root123
     database: 0
     port: 6379
@@ -16,7 +16,7 @@ spring:
       maximum-pool-size: 100
       max-lifetime: 30000
       minimum-idle: 10
-    url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/seata?useUnicode=true&characterEncoding=utf8
     username: root
     password: root123
     driver-class-name: net.sf.log4jdbc.DriverSpy
@@ -32,7 +32,7 @@ dubbo:
   application:
     name: gateway
   registry:
-    address: nacos://101.133.234.7:8848
+    address: nacos://127.0.0.1:8848
     port: -1
   protocol:
     name: dubbo
